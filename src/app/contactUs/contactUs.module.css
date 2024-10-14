@@ -1,0 +1,188 @@
+.container {
+  width: 100%;
+  background-color: #d8e2e8;
+  color: #fff;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+  color: #fff;
+  background-image: url(../../../public/contact2.webp);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  text-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.form {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+}
+.login {
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px;
+  width: 70%;
+  padding: 15px;
+  flex-direction: column;
+  gap: 35px;
+  background: #e3e3e3;
+  box-shadow: 16px 16px 32px #c8c8c8, -16px -16px 32px #fefefe8d;
+  border-radius: 8px;
+}
+@media (max-width: 768px) {
+    .card {
+        
+        width: 100%;
+       
+      }
+  }
+.inputBox {
+  position: relative;
+  width: 100%;
+}
+
+.inputBox input {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: none;
+  color: #000;
+  font-size: 1em;
+  background: transparent;
+  border-left: 2px solid #000;
+  border-bottom: 2px solid #000;
+  transition: 0.1s;
+  border-bottom-left-radius: 8px;
+}
+.inputBox .TextField {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border: none;
+  color: #000;
+  font-size: 1em;
+  background: transparent;
+  border-left: 2px solid #000;
+  border-bottom: 2px solid #000;
+  transition: 0.1s;
+  border-bottom-left-radius: 8px;
+}
+
+.inputBox span {
+  margin-top: 5px;
+  position: absolute;
+  left: 0;
+  transform: translateY(-4px);
+  margin-left: 10px;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 12px;
+  color: #000;
+  text-transform: uppercase;
+  transition: 0.5s;
+  letter-spacing: 3px;
+  border-radius: 8px;
+}
+
+.inputBox input:valid ~ span,
+.inputBox input:focus ~ span {
+  transform: translateX(113px) translateY(-15px);
+  font-size: 0.8em;
+  padding: 5px 10px;
+  background: #000;
+  letter-spacing: 0.2em;
+  color: #fff;
+  border: 2px;
+}
+
+.inputBox input:valid,
+.inputBox input:focus {
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+.inputBox .TextField:valid ~ span,
+.inputBox .TextField:focus ~ span {
+  transform: translateX(113px) translateY(-15px);
+  font-size: 0.8em;
+  padding: 5px 10px;
+  background: #000;
+  letter-spacing: 0.2em;
+  color: #fff;
+  border: 2px;
+}
+
+.inputBox .TextField:valid,
+.inputBox .TextField:focus {
+  border: 2px solid #000;
+  border-radius: 8px;
+}
+
+.enter {
+  height: 45px;
+  width: 100px;
+  border-radius: 5px;
+  border: 2px solid #000;
+  cursor: pointer;
+  background-color: transparent;
+  transition: 0.5s;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 1em;
+}
+
+.enter:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+.info {
+  margin-top: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.socialLinks {
+  margin-top: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.icons a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #000;
+}
+
+.icons a:hover {
+  color: #1976d2;
+}
+.map {
+    padding: 30px 0;
+  }
+  
+  .alert {
+    margin-bottom: 10px;
+    text-align: center;
+  }
