@@ -10,44 +10,108 @@
     background-attachment: fixed; /* Parallax scrolling effect to maintain quality on scroll */
     text-align: center;
 }
-.indriduction__content{
-    width: 50%;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    border-radius: 15px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    color: #dfe8ed;
-    position: absolute;
-    left: 5%;
-    top: 30%;
-    z-index: 2;
-  
+.indriduction__content {
+  width: 50%;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: #dfe8ed;
+  position: absolute;
+  left: 5%;
+  top: 30%;
+  z-index: 2;
 }
 
+/* Adjust heading for all screen sizes */
 .heading {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color:#B9D9EB;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #B9D9EB;
+}
+
+/* Description text styling */
+.description {
+  font-size: 1.2rem;
+  margin: 20px 0;
+  color: #f1f1f1;
+}
+
+/* CTA Button Styling */
+.ctaButton {
+  background-color: #E44D2E;
+  color: white;
+  cursor: pointer;
+}
+
+.ctaButton:hover {
+  background-color: #e44c2ecd;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Large Tablets and Small Laptops */
+@media (max-width: 1024px) {
+  .indriduction__content {
+    width: 70%;
+    left: 10%;
+    top: 20%;
   }
-  
+ 
+  .heading {
+    font-size: 2rem;
+  }
+
   .description {
-    font-size: 1.2rem;
-    margin: 20px 0;
-    color: #f1f1f1;
+    font-size: 1.1rem;
   }
-  
+}
+
+/* Tablets and Large Mobile Devices */
+@media (max-width: 768px) {
+  .indriduction__content {
+    width: 80%;
+    padding: 30px;
+    left: 10%;
+    top: 20%;
+  }
+  .indriduction__wrapper{
+    height: 70vh;
+
+  }
+  .heading {
+    font-size: 1.8rem;
+
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+  .indriduction__content {
+    width: 90%;
+    padding: 20px;
+    left: 5%;
+    top: 20%;
+  }
+  .indriduction__wrapper{
+    height: 70vh;
+
+  }
+  .heading {
+    font-size: 1.5rem;
+
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
   .ctaButton {
-    /* padding: 10px 20px; */
-    background-color: #E44D2E;
-    /* border: none; */
-    /* border-radius: 8px; */
-    color: white;
-    cursor: pointer;
-    /* font-size: 1rem;
-    font-weight: bold; */
+    font-size: 0.9rem;
   }
-  
-  .ctaButton:hover {
-    background-color: #e44c2ecd;
-  }
+}

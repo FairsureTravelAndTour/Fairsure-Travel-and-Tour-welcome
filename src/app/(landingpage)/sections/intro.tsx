@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./intro.module.css";
 import { Button } from "@mui/material";
 
-export const Introduction = () => {
+ const Introduction = () => {
   return (
     <div className={styles.indriduction__wrapper}>
       <div className={styles.indriduction__content}>
@@ -22,3 +22,4 @@ export const Introduction = () => {
     </div>
   );
 };
+export default Introduction;

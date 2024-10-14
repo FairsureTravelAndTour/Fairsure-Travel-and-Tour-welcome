@@ -7,11 +7,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Link from "next/link";
+import Image from "next/image";
+import logo from "../../../../public/Travel&Tourlogo.png";
 
 const pages = [
   { label: "HOME", path: "/" },
   { label: "ABOUT", path: "/aboutUs" },
-  { label: "TOUR AND PACKAGES", path: "/TourAndPackages" },
+  // { label: "TOUR AND PACKAGES", path: "/TourAndPackages" },
   { label: "CONTACT", path: "/contactUs" },
 ];
 
@@ -35,26 +37,20 @@ function NavBar() {
     >
       <Container maxWidth="xl">
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#"
-            sx={{
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: "0rem",
-              color: "#B9D9EB",
-              textDecoration: "none",
-            }}
-          >
-            FAIRESURE <br /> TRAVEL AND TOUR
-          </Typography>
-
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <Image
+              alt="fairsure logo"
+              src={logo}
+              width={100}
+              height={100}
+              style={{ height: "auto", width: "100%" }}
+            />
+          
+          </Box>
           <Box sx={{ display: "flex", gap: 2 }}>
             {pages.map((page) => (
               <Link key={page.label} href={page.path} passHref>
-                <Button sx={{ color: "white", fontWeight: 700 }}>
+                <Button sx={{ color: "#E0FFFF", fontWeight: 700 }}>
                   {page.label}
                 </Button>
               </Link>

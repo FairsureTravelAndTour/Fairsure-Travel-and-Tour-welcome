@@ -10,12 +10,29 @@
 .contactInfo {
   display: flex;
   flex-direction: row;
+  /* flex-wrap: wrap; */
   justify-content: space-around;
   align-items: center;
   margin-bottom: 15px;
   width: 100%;
 }
-
+@media (max-width: 768px) {
+  .contactInfo {
+    flex-direction: column;
+    text-align: left;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0 10px;
+  }
+  .addtext {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}
 .contactLink {
   display: flex;
   align-items: center;
@@ -25,10 +42,10 @@
 }
 
 .contactLink:hover {
-  color:#e44c2ecd; 
+  color: #e44c2ecd;
 }
 
-.address {
+.address ,.addtext{
   display: flex;
   align-items: flex-start;
   text-align: center;

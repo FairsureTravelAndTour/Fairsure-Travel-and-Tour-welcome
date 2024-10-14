@@ -1,18 +1,24 @@
-import React from 'react'
-import { Introduction } from './sections/intro'
-import AboutUsAndTours from './sections/about'
-import WhyChooseUs from './sections/whyChooseUs'
-import Testimonials from './sections/Testimonial'
-import NewsletterSignup from './sections/newsletter'
+import React, { lazy, Suspense } from 'react';
+import CircularProgress from '@mui/material/CircularProgress'; // MUI spinner
+
+const Introduction = lazy(() => import('./sections/intro'));
+const AboutUsAndTours = lazy(() => import('./sections/about'));
+const WhyChooseUs = lazy(() => import('./sections/whyChooseUs'));
+const Testimonials = lazy(() => import('./sections/Testimonial'));
+const NewsletterSignup = lazy(() => import('./sections/newsletter'));
+
 
 export const Welcome = () => {
   return (
     <div>
-      <Introduction/>
-      <AboutUsAndTours/>
+       <Suspense fallback={<CircularProgress style={{ margin: '20px auto' }} />}>
+       <Introduction/>
+       <AboutUsAndTours/>
       <WhyChooseUs/>
       <Testimonials/>
       <NewsletterSignup/>
+       </Suspense>
+      
       
     </div>
   )

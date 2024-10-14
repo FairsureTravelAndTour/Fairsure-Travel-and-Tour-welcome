@@ -62,6 +62,7 @@ export default function AboutUsAndTours() {
                   height="140"
                   image={tour.image} 
                   alt={tour.title}
+                  
                 />
                 <CardContent>
                   <Typography variant="h6" component="div" style={{color:"white",fontWeight:"bold"}}>

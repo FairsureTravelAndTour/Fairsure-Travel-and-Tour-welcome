@@ -14,21 +14,29 @@ const Footer = () => {
 
         {/* Email Address */}
         <Link
-          href="mailto:info@travelagency.com"
+          href="mailto:Fairsuretravels@gmail.com"
           className={styles.contactLink}
         >
           <Email className={styles.icon} />
-          <Typography variant="body1">info@travelagency.com</Typography>
+          <Typography variant="body1">Fairsuretravels@gmail.com</Typography>
         </Link>
 
         {/* Office Address */}
         <Box className={styles.address}>
           <LocationOn className={styles.icon} />
-          <Typography variant="body1">
-            unity bank building 7th floor, <br /> plot 785 Herbart Macurlay way
-            CBD ,<br />
+          <div>
+          <Typography variant="body1"  className={styles.addtext} >
+            unity bank building 7th floor,
+          </Typography>
+          <Typography variant="body1" className={styles.addtext}>
+             plot 785 Herbart Macurlay way
+            CBD ,
+          </Typography>
+          <Typography variant="body1" className={styles.addtext}>
+           
             Abuja, Nigeria.
           </Typography>
+          </div>
         </Box>
       </Box>
 
