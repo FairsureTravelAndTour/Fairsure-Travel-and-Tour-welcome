@@ -34,7 +34,7 @@ const Contact = () => {
   }, []);
   return (
     <div className={styles.container}>
-      <Typography variant="h2" className={styles.heading}>
+      <Typography variant="h1" className={styles.heading}>
         Contact Us
         <Box className={styles.info}>
           <Typography
@@ -54,7 +54,7 @@ const Contact = () => {
       </Typography>
       <Container maxWidth="lg">
         <Box className={styles.info}>
-        <Typography variant="h6" style={{ color: "black", margin: "20px 0", }}  textAlign="center" display="flex" justifyContent="center">
+        <Typography variant="h6" style={{ color: "white", margin: "20px 0", }}  textAlign="center" display="flex" justifyContent="center">
             <strong>
               {" "}
               Get in Touch with Us <br /> Use the form below to send us a
@@ -115,7 +115,7 @@ const Contact = () => {
         </form>
       </Container>
       <Container maxWidth="lg">
-        <Typography variant="h6" style={{ color: "black", marginTop: "20px " }}>
+        <Typography variant="h6" style={{ color: "white", marginTop: "20px " }}>
           <strong>
             {" "}
             Find Us on the Map Explore our location below to visit us:

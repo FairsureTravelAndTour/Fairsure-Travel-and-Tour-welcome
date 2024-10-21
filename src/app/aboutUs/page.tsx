@@ -1,61 +1,68 @@
 "use client";
-import { Container, Typography, Grid, Box, Avatar, Card, CardContent } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Grid,
+  Box,
+  Avatar,
+  Card,
+  CardContent,
+} from "@mui/material";
 import styles from "./aboutUs.module.css";
 import AOS from "aos";
 import { useEffect } from "react";
+import Image from "next/image";
+import vision from "../../../public/vision.webp";
+import mission from "../../../public/mission.avif";
 
 const About = () => {
-
-const values = [
-  {
-    title: 'Customer Satisfaction',
-    description:
-      'We prioritize the needs of our clients by delivering timely and reliable services that exceed expectations.',
-  },
-  {
-    title: 'Professionalism and Expertise',
-    description:
-      'With a team of seasoned travel professionals, we provide expert advice and guidance to help clients make informed decisions.',
-  },
-  {
-    title: 'Innovation and Technology',
-    description:
-      'We leverage modern technology to offer real-time access to the best fares and reservations worldwide, ensuring convenience at every step.',
-  },
-  {
-    title: 'Integrity and Transparency',
-    description:
-      'We uphold honesty and transparency in all interactions, ensuring that clients are fully informed about pricing, policies, and terms.',
-  },
-  {
-    title: 'Excellence and Quality',
-    description:
-      'We maintain high standards across all our services, ensuring each traveler enjoys an experience tailored to their needs.',
-  },
-  {
-    title: 'Collaborative Partnerships',
-    description:
-      'Through strong collaborations with global suppliers and service providers, we guarantee the best prices and services.',
-  },
-];
-const members = [
-  {
-    title: 'Mr Johnson',
-    role:
-      'MD',
-  },
-  {
-    title: 'Mr Samson',
-    role:
-      'Legal',
-  },
-  {
-    title: 'Mrs Ada',
-    role:
-      'Consultant',
-  },
-  ,
-];
+  const values = [
+    {
+      title: "Customer Satisfaction",
+      description:
+        "We prioritize the needs of our clients by delivering timely and reliable services that exceed expectations.",
+    },
+    {
+      title: "Professionalism and Expertise",
+      description:
+        "With a team of seasoned travel professionals, we provide expert advice and guidance to help clients make informed decisions.",
+    },
+    {
+      title: "Innovation and Technology",
+      description:
+        "We leverage modern technology to offer real-time access to the best fares and reservations worldwide, ensuring convenience at every step.",
+    },
+    {
+      title: "Integrity and Transparency",
+      description:
+        "We uphold honesty and transparency in all interactions, ensuring that clients are fully informed about pricing, policies, and terms.",
+    },
+    {
+      title: "Excellence and Quality",
+      description:
+        "We maintain high standards across all our services, ensuring each traveler enjoys an experience tailored to their needs.",
+    },
+    {
+      title: "Collaborative Partnerships",
+      description:
+        "Through strong collaborations with global suppliers and service providers, we guarantee the best prices and services.",
+    },
+  ];
+  const members = [
+    {
+      title: "Mr Johnson",
+      role: "MD",
+    },
+    {
+      title: "Mr Samson",
+      role: "Legal",
+    },
+    {
+      title: "Mrs Ada",
+      role: "Consultant",
+    },
+    ,
+  ];
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -65,7 +72,7 @@ const members = [
   }, []);
   return (
     <div className={styles.container}>
-      <Typography variant="h2" className={styles.heading} >
+      <Typography variant="h1" className={styles.heading}>
         About Fairsure Travel and Tour
       </Typography>
 
@@ -101,22 +108,23 @@ const members = [
           <Typography variant="h4" gutterBottom>
             Our Value
           </Typography>
-         <div className={styles.cardwrapper} >
-         {values.map((value, index) => (
+          <div className={styles.cardwrapper}>
+            {values.map((value, index) => (
               <Card className={styles.card} key={index}>
-              <CardContent>
-                <Typography variant="h5" className={styles.cardTitle}>
-                  {value.title}
-                </Typography>
-                <Typography variant="body1" className={styles.cardDescription}>
-                  {value.description}
-                </Typography>
-              </CardContent>
-            </Card>
-      ))}
-         </div>
-        
-          
+                <CardContent>
+                  <Typography variant="h5" className={styles.cardTitle}>
+                    {value.title}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    className={styles.cardDescription}
+                  >
+                    {value.description}
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </section>
 
         <section className={styles.teamSection}>
@@ -124,7 +132,7 @@ const members = [
             Meet the Team
           </Typography>
           <Grid container spacing={4}>
-            {members.map((member,index) => (
+            {members.map((member, index) => (
               <Grid item xs={6} sm={4} key={index}>
                 <Box textAlign="center">
                   <Avatar
@@ -145,27 +153,51 @@ const members = [
           <Typography variant="h4" gutterBottom>
             Our Vision
           </Typography>
-          <Typography>
-            Our vision is to become a recognized leader in the travel industry
-            by offering innovative travel products and exceptional value-added
-            services. We aim to redefine travel management by providing
-            seamless, end-to-end services that exceed client expectations,
-            making every journey a memorable one.
-          </Typography>
-        </section>
+          <div className={styles.valueContent}>
+            <Typography sx={{ flex: 1 }}>
+              Our vision is to become a recognized leader in the travel industry
+              by offering innovative travel products and exceptional value-added
+              services. We aim to redefine travel management by providing
+              seamless, end-to-end services that exceed client expectations,
+              making every journey a memorable one.
+            </Typography>
+            <div style={{ marginLeft: "20px" }}>
+              <Image
+                src={vision}
+                alt="vision"
+              
+                loading="lazy"
+                className={styles.valueimg}
 
+              />
+            </div>
+          </div>
+        </section>
         <section className={styles.valuesSection}>
           <Typography variant="h4" gutterBottom>
-            Our Mission
+          Our Mission
           </Typography>
-          <Typography>
-            Our mission at FAIRSURE Travels and Tours is to manage all travel
-            needs efficiently and provide seamless travel experiences to
-            individuals and businesses. We strive to offer high-quality,
-            personalized services, ensuring travelers enjoy convenience,
-            comfort, and value throughout their journey.
-          </Typography>
+          <div className={styles.valueContent}>
+          <div style={{ marginRight: "20px" }}>
+              <Image
+              className={styles.valueimg}
+                 src={mission}
+                alt="mission"
+                
+                loading="lazy"
+              />
+            </div>
+          <Typography sx={{ flex: 1 }}>
+              Our mission at FAIRSURE Travels and Tours is to manage all travel
+              needs efficiently and provide seamless travel experiences to
+              individuals and businesses. We strive to offer high-quality,
+              personalized services, ensuring travelers enjoy convenience,
+              comfort, and value throughout their journey.
+            </Typography>
+           
+          </div>
         </section>
+
       </Container>
     </div>
   );

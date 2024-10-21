@@ -11,6 +11,7 @@
   justify-content: center;
   align-items: center;
   height: 90vh;
+  font-weight: bold;
   color: #fff;
   background-image: url(../../../public/about1.avif);
   background-size: cover;
@@ -28,11 +29,47 @@ height: 70vh;
 }
 }
 
+
+.valueContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  gap: 20px; 
+  flex-wrap: wrap; 
+}
+.valueContent .valueimg {
+  width: 500px;
+  height: auto;
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .valueContent {
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .valueContent div {
+    margin-left: 0; 
+    margin-right: 0; 
+    margin-top: 20px; 
+  }
+  .valueContent .valueimg {
+    width: 300px;
+    height: auto;
+    border-radius: 20px;
+  }
+  .valuesSection{
+    padding: 0;
+  }
+}
+
+
+
 .storySection,
 .teamSection,
 .valuesSection {
   padding: 40px;
-  /* box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2); */
 }
 .storySection,
 .teamSection {

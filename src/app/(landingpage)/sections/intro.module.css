@@ -1,88 +1,80 @@
-.indriduction__wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full height of the viewport */
-    background-image: url(../../../../public/travel2.avif);
-    background-size: cover; /* Cover the entire container */
-    background-position: center center; /* Ensure the image stays centered */
-    background-repeat: no-repeat; /* Prevent repetition of the image */
-    background-attachment: fixed; /* Parallax scrolling effect to maintain quality on scroll */
-    text-align: center;
-}
-.indriduction__content {
-  width: 50%;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
-  border-radius: 15px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  color: #dfe8ed;
-  position: absolute;
-  left: 5%;
-  top: 30%;
-  z-index: 2;
+.introWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: url("../../../../public/travel2.avif");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 20px; 
 }
 
-/* Adjust heading for all screen sizes */
+.introContent {
+  max-width: 600px;
+  width: 90%;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.2); /* Subtle glassmorphism */
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  text-align: center;
+  color: #eaeaea;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Typography Styles */
 .heading {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #B9D9EB;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #b0d1e7;
+  margin-bottom: 15px;
 }
 
-/* Description text styling */
+.subHeading {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #dfe8ed;
+}
+
 .description {
-  font-size: 1.2rem;
-  margin: 20px 0;
-  color: #f1f1f1;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  line-height: 1.6;
+  color: #f0f0f0;
 }
 
-/* CTA Button Styling */
+/* CTA Button */
 .ctaButton {
-  background-color: #E44D2E;
+  background-color: #e44d2e;
   color: white;
-  cursor: pointer;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-transform: none;
+  transition: background-color 0.3s ease;
 }
 
 .ctaButton:hover {
   background-color: #e44c2ecd;
 }
 
-/* Media Queries for Responsiveness */
+/* Responsive Design */
 
-/* Large Tablets and Small Laptops */
+/* Tablets and Small Laptops */
 @media (max-width: 1024px) {
-  .indriduction__content {
-    width: 70%;
-    left: 10%;
-    top: 20%;
+  .introContent {
+    /* max-width: 80%; */
+    margin-top: 100px;
+
   }
- 
+
   .heading {
-    font-size: 2rem;
+    font-size: 2.4rem;
   }
 
-  .description {
-    font-size: 1.1rem;
-  }
-}
-
-/* Tablets and Large Mobile Devices */
-@media (max-width: 768px) {
-  .indriduction__content {
-    width: 80%;
-    padding: 30px;
-    left: 10%;
-    top: 20%;
-  }
-  .indriduction__wrapper{
-    height: 70vh;
-
-  }
-  .heading {
-    font-size: 1.8rem;
-
+  .subHeading {
+    font-size: 1.6rem;
   }
 
   .description {
@@ -90,21 +82,29 @@
   }
 }
 
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .introWrapper {
+    min-height: 80vh;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .subHeading {
+    font-size: 1.4rem;
+  }
+}
+
 /* Small Mobile Devices */
 @media (max-width: 480px) {
-  .indriduction__content {
-    width: 90%;
+  .introContent {
     padding: 20px;
-    left: 5%;
-    top: 20%;
   }
-  .indriduction__wrapper{
-    height: 70vh;
 
-  }
   .heading {
-    font-size: 1.5rem;
-
+    font-size: 1.8rem;
   }
 
   .description {
@@ -112,6 +112,7 @@
   }
 
   .ctaButton {
+    padding: 10px 20px;
     font-size: 0.9rem;
   }
 }
