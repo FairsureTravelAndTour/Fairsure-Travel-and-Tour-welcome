@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  background-color: #d8e2e8;
+  background-color: #1c2b33;
   color: #fff;
 }
 
@@ -13,12 +13,22 @@
   align-items: center;
   height: 90vh;
   color: #fff;
+  font-weight: bold;
   background-image: url(../../../public/contact2.webp);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   text-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
+  
+}
+@media (max-width: 768px) {
+  .heading {
+      font-size: 1.8rem;
+  font-weight: bolder;
+  height: 70vh;
+  
+  }
 }
 
 .form {
@@ -38,6 +48,7 @@
 }
 
 .card {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,7 +58,7 @@
   flex-direction: column;
   gap: 35px;
   background: #e3e3e3;
-  box-shadow: 16px 16px 32px #c8c8c8, -16px -16px 32px #fefefe8d;
+  box-shadow: 16px 16px 32px #c8c8c867, -10px -10px 30px #fefefe3c;
   border-radius: 8px;
 }
 @media (max-width: 768px) {
