@@ -386,7 +386,7 @@ const PrivacyPolicy = () => {
                 data where more than one ground may have been used to
                 processyour personal data.   For the purpose of this Privacy
                 Policy, consent means any freely given, specific,informed, and
-                unambiguous indication of the Data Subject's wishes by which
+                unambiguous indication of the Data Subject&apos;s wishes by which
                 they, through a statement or a clear affirmative action, signify
                 their agreement to the processing of Personal Information
                 relating to them.
@@ -588,7 +588,7 @@ const PrivacyPolicy = () => {
                 information (such as creditcard data), that information is
                 encrypted and transmitted to us in a secureway. You can verify
                 this by looking for a closed lock icon at the bottom ofyour web
-                browser, or looking for "https" at the beginning of theaddress
+                browser, or looking for &quot;https&quot; at the beginning of theaddress
                 of the web page.
               </Typography>
               <br />
@@ -656,8 +656,8 @@ const PrivacyPolicy = () => {
               <br />
 
               <Typography variant="body1">
-                We use "cookies" on this site. A cookie is a piece of datastored
-                on a site visitor's hard drive to help us improve your access to
+                We use &quot;cookies&quot; on this site. A cookie is a piece of datastored
+                on a site visitor&apos;s hard drive to help us improve your access to
                 oursite and identify repeat visitors to our site. For instance,
                 when we use a cookie to identify you, depending on your browser
                 settings you would not have to log in a password more than once,
@@ -751,7 +751,7 @@ const PrivacyPolicy = () => {
                 outside Nigeria, we shall put adequate measures in place to
                 ensure the security of such Personal Information. In particular,
                 we shall, among other things, confirm whether the country is on
-                the Nigeria Data Protection Commission ("NDPC”)Whitelist of
+                the Nigeria Data Protection Commission (&quot;NDPC&quot;)Whitelist of
                 Countries with adequate data protection laws.
               </Typography>
               <br />
@@ -967,8 +967,8 @@ const PrivacyPolicy = () => {
                   a.   Constitution of the Federal Republic of Nigeria 1999 (as
                   Amended);
                 </ol>
-                <ol>b.   Nigeria Data Protection Act 2023("NDPA”); </ol>
-                <ol>c.    Nigeria Data Protection Regulation2019 ("NDPR”); </ol>
+                <ol>b.   Nigeria Data Protection Act 2023(&quot;NDPA&quot;); </ol>
+                <ol>c.    Nigeria Data Protection Regulation2019 (&quot;NDPR&quot;); </ol>
                 <ol>d.   NDPR 2019 Implémentation Framework ;</ol>
                 <ol>
                   e.   Nigeria Cybercrimes (Prohibition,Prevention, Amendement)
