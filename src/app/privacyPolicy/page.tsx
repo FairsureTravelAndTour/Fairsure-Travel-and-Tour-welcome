@@ -759,7 +759,7 @@ const PrivacyPolicy = () => {
               <Typography variant="body1">
                 Transfer of Personal Information out of Nigeria would be in
                 accordance with the provisions of the Nigeria Data Protection
-                Act ("NDPA”) 2023. We will therefore only transfer Personal
+                Act (&quot;NDPA&quot;) 2023. We will therefore only transfer Personal
                 Information out of Nigeria on one of thefollowing conditions:
                 <br />
               </Typography>
