@@ -39,10 +39,29 @@ const Footer = () => {
           </div>
         </Box>
       </Box>
-
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-evenly",width:"100%",flexWrap:"wrap-reverse"}}>
       <Typography variant="body2" className={styles.copyright}>
         &copy; {new Date().getFullYear()} Travel Agency. All rights reserved.
       </Typography>
+      <div style={{display:"flex",alignItems:"center",gap:"10px",flexWrap:"wrap"}}>
+
+      <Link
+          href="/privacyPolicy"
+          // className={styles.contactLink}
+        >
+          <Typography variant="body2">Privacy policy</Typography>
+        </Link>
+      <Link
+          href="mailto:Fairsuretravels@gmail.com"
+          // className={styles.contactLink}
+        >
+          <Typography variant="body2">Terms and Condition</Typography>
+        </Link>
+       
+      </div>
+      </div>
+
+    
     </Box>
   );
 };
