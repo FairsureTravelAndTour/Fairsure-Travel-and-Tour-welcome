@@ -13,7 +13,7 @@ const Contact = () => {
 
     if (form.current) {
       try {
-        const result = await emailjs.sendForm(
+         await emailjs.sendForm(
           "service_0dzqtfo",
           "template_2ffiesh",
           form.current,
@@ -21,6 +21,7 @@ const Contact = () => {
         );
         setMessageStatus("Message sent successfully!");
       } catch (error) {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
         setMessageStatus("Failed to send message. Please try again.");
       }
     }
