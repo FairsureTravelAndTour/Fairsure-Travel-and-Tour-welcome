@@ -27,11 +27,11 @@
   }
   @media (max-width: 768px) {
     .heading {
-      font-size: 1.8rem !important;
-  font-weight: bolder !important;
-  height: 70vh !important;
-  
-  }
+        font-size: 1.8rem !important;
+    font-weight: bolder !important;
+    height: 70vh !important;
+    
+    }
     }
   .sidebar {
     padding: 1rem;

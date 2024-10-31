@@ -52,7 +52,7 @@ const Footer = () => {
           <Typography variant="body2">Privacy policy</Typography>
         </Link>
       <Link
-          href="mailto:Fairsuretravels@gmail.com"
+          href="/TermsAndCondition"
           // className={styles.contactLink}
         >
           <Typography variant="body2">Terms and Condition</Typography>

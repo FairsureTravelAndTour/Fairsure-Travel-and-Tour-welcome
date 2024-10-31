@@ -24,11 +24,11 @@
 }
 @media (max-width: 768px) {
   .heading {
-      font-size: 1.8rem;
-  font-weight: bolder;
-  height: 70vh;
-  
-  }
+    font-size: 1.8rem !important;
+font-weight: bolder !important;
+height: 70vh !important;
+
+}
 }
 
 .form {

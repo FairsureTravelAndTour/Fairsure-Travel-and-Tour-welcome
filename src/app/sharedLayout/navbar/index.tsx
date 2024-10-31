@@ -17,6 +17,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import styles from "./index.module.css";
 
 const pages = [
   { label: "HOME", path: "/" },
@@ -46,11 +47,11 @@ function NavBar() {
   const drawer = (
     <Box
       component="div"
-      sx={{ width: 250 ,height:"100vh"}}
+      sx={{ width: 250, height: "100vh" }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
-      style={{backgroundColor:'#1c2b33',color:'white'}}
+      style={{ backgroundColor: "#1c2b33", color: "white" }}
     >
       <List>
         {pages.map((page) => (
@@ -83,13 +84,16 @@ function NavBar() {
     >
       <Container maxWidth="xl">
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Box sx={{ display: "flex", gap: 2 }}>
+          <Box
+            sx={{ display: "flex", gap: 2, width: "50%", maxHeight: "50px" }}
+            className={styles.logobox}
+          >
             <Image
               alt="fairsure logo"
               src={logo}
               width={100}
+              className={styles.logo}
               height={100}
-              style={{ height: "auto", width: "100%" }}
             />
           </Box>
 
