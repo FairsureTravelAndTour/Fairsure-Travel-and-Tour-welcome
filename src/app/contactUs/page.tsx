@@ -20,7 +20,7 @@ const Contact = () => {
           "FeGi2bTxPb_A2m_L0"
         );
         setMessageStatus("Message sent successfully!");
-      } catch (error) {
+      } catch (_) {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
         setMessageStatus("Failed to send message. Please try again.");
       }
