@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { CgSpinner } from "react-icons/cg";
-import Navbar from "./sharedLayout/Navbar";
+import Navbar from "./sharedLayout/navbar";
 import Footer from "./sharedLayout/footer";
 import NewsLetterSignUp from "./_components/NewsLetterSignUp/NewsLetterSignUp";
 
