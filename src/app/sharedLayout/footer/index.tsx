@@ -1,69 +1,87 @@
-import { Typography, Link, Box } from "@mui/material";
-import { Phone, Email, LocationOn } from "@mui/icons-material";
-import styles from "./index.module.css";
+import Link from "next/link";
+import React from "react";
+import {
+	FaPhone,
+	FaEnvelope,
+	FaWhatsapp,
+	FaFacebook,
+	FaTwitter,
+	FaInstagram,
+	FaLinkedin,
+} from "react-icons/fa";
+import { FaLocationPin } from "react-icons/fa6";
 
-const Footer = () => {
-  return (
-    <Box className={styles.footerContainer}>
-      <Box className={styles.contactInfo}>
-        {/* Phone Number */}
-        <Link href="tel:+2348058000936" className={styles.contactLink}>
-          <Phone className={styles.icon} />
-          <Typography variant="body1">0805 800 0936</Typography>
-        </Link>
+const footer = () => {
+	const date = new Date().getFullYear();
 
-        {/* Email Address */}
-        <Link
-          href="mailto:Fairsuretravels@gmail.com"
-          className={styles.contactLink}
-        >
-          <Email className={styles.icon} />
-          <Typography variant="body1">Fairsuretravels@gmail.com</Typography>
-        </Link>
+	return (
+		<div className="w-screen bg-gray-900 flex justify-center py-10 px-4 lg:px-0">
+			<div className="container text-white text-sm flex flex-col items-center">
+				<div className="flex lg:flex-row flex-col justify-between w-full">
+					<div className="flex flex-col mb-7">
+						<Link
+							href={"tel:+2349053951769"}
+							className="flex gap-2 items-center"
+						>
+							<FaPhone /> 0905 395 1769
+						</Link>
+						<Link
+							href={"mailto:info@fairsuretravel.com.ng"}
+							className="flex gap-2 items-center"
+						>
+							<FaEnvelope />
+							info@fairsuretravel.com.ng
+						</Link>
+					</div>
+					<div className="flex gap-7 items-center mb-7">
+						<Link href={"https://www.facebook.com/share/1BN3bnxbY9"}>
+							<FaFacebook className="size-8" />
+						</Link>
+						<Link
+							href={
+								"https://www.instagram.com/fairsuretravel/?utm_source=ig_web_button_share_sheet"
+							}
+						>
+							<FaInstagram className="size-8" />
+						</Link>
+						<Link href={"https://x.com/fairsuretravels"}>
+							<FaTwitter className="size-8" />
+						</Link>
+						<Link href={"https://wa.link/tj00xf"}>
+							<FaWhatsapp className="size-8" />
+						</Link>
+						<Link
+							href={
+								"https://www.linkedin.com/in/fairsure-travel-and-tours-591348333/"
+							}
+						>
+							<FaLinkedin className="size-8" />
+						</Link>
+					</div>
+					<div className="flex flex-col w-[300px] gap-6  justify-center">
+						<div className="flex items-start gap-3">
+							<FaLocationPin className="size-6" />
 
-        {/* Office Address */}
-        <Box className={styles.address}>
-          <LocationOn className={styles.icon} />
-          <div>
-          <Typography variant="body1"  className={styles.addtext} >
-            unity bank building 7th floor,
-          </Typography>
-          <Typography variant="body1" className={styles.addtext}>
-             plot 785 Herbart Macurlay way
-            CBD ,
-          </Typography>
-          <Typography variant="body1" className={styles.addtext}>
-           
-            Abuja, Nigeria.
-          </Typography>
-          </div>
-        </Box>
-      </Box>
-      <div style={{display:"flex",alignItems:"center",justifyContent:"space-evenly",width:"100%",flexWrap:"wrap-reverse"}}>
-      <Typography variant="body2" className={styles.copyright}>
-        &copy; {new Date().getFullYear()} Travel Agency. All rights reserved.
-      </Typography>
-      <div style={{display:"flex",alignItems:"center",gap:"10px",flexWrap:"wrap"}}>
+							<p className="">
+								Unity bank building 7th floor, plot 785 Herbart Macurlay way CBD
+								, Abuja, Nigeria.
+							</p>
+						</div>
 
-      <Link
-          href="/privacyPolicy"
-          // className={styles.contactLink}
-        >
-          <Typography variant="body2">Privacy policy</Typography>
-        </Link>
-      <Link
-          href="/TermsAndCondition"
-          // className={styles.contactLink}
-        >
-          <Typography variant="body2">Terms and Condition</Typography>
-        </Link>
-       
-      </div>
-      </div>
-
-    
-    </Box>
-  );
+						<div className="flex gap-3 flex-col lg:items-center ">
+							<Link href={"/privacyPolicy"}>Privacy policy</Link>
+							<Link href={"/TermsAndCondition"}>Terms and Condition</Link>
+						</div>
+					</div>
+				</div>
+				<div className="flex flex-col items-center w-full mt-10">
+					<h2 className=" text-center">
+						© {date} Travel Agency. All rights reserved.
+					</h2>
+				</div>
+			</div>
+		</div>
+	);
 };
 
-export default Footer;
+export default footer;

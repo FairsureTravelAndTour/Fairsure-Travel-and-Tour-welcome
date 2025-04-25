@@ -1,141 +1,86 @@
 "use client";
-import { Alert, Box, Container, Typography } from "@mui/material";
-import styles from "./contactUs.module.css";
-import emailjs from "@emailjs/browser";
-import { useEffect, useRef, useState } from "react";
-import AOS from "aos";
+
+import Image from "next/image";
+import { FaPhone } from "react-icons/fa";
+import Link from "next/link";
+import { FaMessage } from "react-icons/fa6";
 
 const Contact = () => {
-  const form = useRef<HTMLFormElement>(null);
-  const [messageStatus, setMessageStatus] = useState<string | null>(null);
-  const sendEmail = async (e: React.FormEvent) => {
-    e.preventDefault();
+	return (
+		<>
+			<div className="w-screen bg-gray-900 flex justify-center mt-[70px] items relative mb-[700px] lg:mb-[270px]">
+				<div className="container flex px-20 items-center justify-between py-[100px]">
+					<div className="space-y-[10px]">
+						<h1 className="lg:text-6xl text-3xl font-medium text-white">
+							Get in touch<span className="text-7xl text-blue-400">.</span>
+						</h1>
+						<h2 className="text-white  max-w-[500px]">
+							Want to get in touch? Whether it&apos;s for guidance on flight
+							bookings or to ask questions about our services. <br /> We&apos;d
+							love to hear from you. Here&apos;s how you can reach us.
+						</h2>
+					</div>
+					<div className="hidden lg:inline overflow-hidden rounded-md">
+						<Image
+							src={"/customerSupport.webp"}
+							height={200}
+							width={400}
+							alt="contact photo"
+							className="h-[300px]"
+						/>
+					</div>
+				</div>
 
-    if (form.current) {
-      try {
-         await emailjs.sendForm(
-          "service_0dzqtfo",
-          "template_2ffiesh",
-          form.current,
-          "FeGi2bTxPb_A2m_L0"
-        );
-        setMessageStatus("Message sent successfully!");
-      } catch (_) {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        setMessageStatus("Failed to send message. Please try again.");
-      }
-    }
-  };
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
-    AOS.refresh();
-  }, []);
-  return (
-    <div className={styles.container}>
-      <Typography variant="h1" className={styles.heading}>
-        Contact Us
-        <Box className={styles.info}>
-          <Typography
-            variant="h6"
-            style={{
-              maxWidth: "700px",
-              display: "flex",
-              flexWrap: "wrap",
-              margin: "5px 20px",
-            }}
-          >
-            We’d love to hear from you! Whether you have questions, need help
-            with a booking, or want to know more about our travel services, our
-            team is here to assist.
-          </Typography>
-        </Box>
-      </Typography>
-      <Container maxWidth="lg">
-        <Box className={styles.info}>
-        <Typography variant="h6" style={{ color: "white", margin: "20px 0", }}  textAlign="center" display="flex" justifyContent="center">
-            <strong>
-              {" "}
-              Get in Touch with Us <br /> Use the form below to send us a
-              message, book a call, or request more information. <br /> We’ll
-              get back to you as soon as possible.
-            </strong>
-          </Typography>
-        </Box>
-        <form ref={form} onSubmit={sendEmail} className={styles.form} data-aos="zoom-in">
-          <div className={styles.card}>
-            {messageStatus && (
-              <Alert
-                className={styles.login}
-                severity={
-                  messageStatus.includes("success") ? "success" : "error"
-                }
-              >
-                {messageStatus}
-              </Alert>
-            )}
+				<div className="flex lg:flex-row flex-col absolute bottom-[-270px] gap-10 h-[330px]">
+					<div className="bg-gray-100 rounded-lg flex flex-col items-center justify-center px-5 py-4 lg:w-[400px] w-[300px] h-full">
+						<FaPhone className="size-10 mb-5" />
 
-            <a className={styles.login}> Get in touch with us</a>
-            <div className={styles.inputBox}>
-              <input type="text" name="user_name" aria-label="Name" required />
-              <span className="user">Name</span>
-            </div>
+						<h2 className="text-lg font-medium">Talk to us.</h2>
 
-            <div className={styles.inputBox}>
-              <input
-                type="email"
-                name="user_email"
-                aria-label="Email"
-                required
-              />
-              <span>Email address</span>
-            </div>
-            <div className={styles.inputBox}>
-              <input type="text" name="subject" aria-label="Subject" required />
-              <span>Subject</span>
-            </div>
-            <div className={styles.inputBox}>
-              <textarea
-                id=""
-                aria-label="Message"
-                name="message"
-                rows={4}
-                required
-                aria-multiline
-                className={styles.TextField}
-              />
-              <span>message</span>
-            </div>
+						<h3 className="text-center my-5">
+							want to ask questions or book a flight via a phone call? <br />
+							You can talk to us directly.
+						</h3>
 
-            <button className={styles.enter} type="submit">
-              SEND
-            </button>
-          </div>
-        </form>
-      </Container>
-      <Container maxWidth="lg">
-        <Typography variant="h6" style={{ color: "white", marginTop: "20px " }}>
-          <strong>
-            {" "}
-            Find Us on the Map Explore our location below to visit us:
-          </strong>
-        </Typography>
+						<Link
+							href={"tel:+2349053951769"}
+							className="my-5 underline underline-offset-5 hover:text-blue-400"
+						>
+							09053951769
+						</Link>
+					</div>
+					<div className="bg-gray-100 rounded-lg flex flex-col items-center px-5 py-4 lg:w-[400px] w-[300px] ">
+						<FaMessage className="size-10 mb-5" />
+						<h2 className="text-lg font-medium text-center mb-5">
+							send us a Message or Complaint. We will reach out ASAP!
+						</h2>
 
-        <Box className={styles.map}>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.1500306893754!2d7.48544887361227!3d9.050076288661586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0ba3d6cef4c9%3A0x818eab5a4834a347!2sUnity%20Bank%20PLC!5e0!3m2!1sen!2sng!4v1728906378909!5m2!1sen!2sng"
-            width="100%"
-            height="450"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </Box>
-      </Container>
-    </div>
-  );
+						<form action="" className="flex flex-col items-start w-full">
+							<input
+								type="text"
+								placeholder="Full Name"
+								className="w-full  p-3 border-b focus:outline-none"
+							/>
+							<input
+								type="text"
+								placeholder="Email"
+								className="w-full  p-3 border-b focus:outline-none"
+							/>
+							<input
+								type="text"
+								placeholder="Message"
+								className="w-full  p-3 border-b focus:outline-none"
+							/>
+							<div className="w-full flex justify-center">
+								<button className="my-5 bg-blue-400 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md font-semibold">
+									Send
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</>
+	);
 };
 export default Contact;

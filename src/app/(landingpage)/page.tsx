@@ -1,25 +1,28 @@
-import React, { lazy, Suspense } from 'react';
-import CircularProgress from '@mui/material/CircularProgress'; // MUI spinner
+"use client";
 
-const Introduction = lazy(() => import('./sections/intro'));
-const AboutUsAndTours = lazy(() => import('./sections/about'));
-const WhyChooseUs = lazy(() => import('./sections/whyChooseUs'));
-const Testimonials = lazy(() => import('./sections/Testimonial'));
-const NewsletterSignup = lazy(() => import('./sections/newsletter'));
+import dynamic from "next/dynamic";
 
+const HeroSection = dynamic(() => import("../_components/Hero/Hero"), {
+	ssr: false,
+	loading: () => <div>Loading...</div>,
+});
+const WhyChooseUs = dynamic(
+	() => import("../_components/WhyChooseUs/WhyChooseUs"),
+	{ ssr: false, loading: () => <div>Loading...</div> }
+);
+const Testimonials = dynamic(
+	() => import("../_components/Testimonials/Testimonials"),
+	{ ssr: false, loading: () => <div>Loading...</div> }
+);
 
-export const Welcome = () => {
-  return (
-    <div>
-       <Suspense fallback={<CircularProgress style={{ margin: '20px auto' }} />}>
-       <Introduction/>
-       <AboutUsAndTours/>
-      <WhyChooseUs/>
-      <Testimonials/>
-      <NewsletterSignup/>
-       </Suspense>
-      
-      
-    </div>
-  )
+export default function Welcome() {
+	return (
+		<div className="w-full">
+			<HeroSection />
+			<div className="flex flex-col items-center">
+				<WhyChooseUs />
+				<Testimonials />
+			</div>
+		</div>
+	);
 }

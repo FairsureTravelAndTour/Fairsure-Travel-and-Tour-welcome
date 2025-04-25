@@ -1,14 +1,9 @@
-import { Welcome } from "./(landingpage)/page";
-import 'aos/dist/aos.css';
-import styles from './page.module.css'; 
-
+import Welcome from "./(landingpage)/page";
 
 export default function Home() {
-
-
-  return (
-    <div className={styles.page}>
-      <Welcome/>
-    </div>
-  );
+	return (
+		<div className="w-screen">
+			<Welcome />
+		</div>
+	);
 }
