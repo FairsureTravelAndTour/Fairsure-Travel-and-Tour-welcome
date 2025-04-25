@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { CgSpinner } from "react-icons/cg";
-import NavBar from "./sharedLayout/Navbar";
+import Navbar from "./sharedLayout/Navbar";
 import Footer from "./sharedLayout/footer";
 import NewsLetterSignUp from "./_components/NewsLetterSignUp/NewsLetterSignUp";
 
@@ -26,7 +26,7 @@ export default function ClientLayout({
 
 	return (
 		<div className="flex flex-col items-center">
-			<NavBar />
+			<Navbar />
 			{loading && (
 				<div
 					style={{
