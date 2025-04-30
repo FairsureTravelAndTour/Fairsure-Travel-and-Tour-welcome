@@ -1,14 +1,8 @@
 {
 	"redirects": [
 		{
-			"source": "/(.*)",
-			"has": [
-				{
-					"type": "host",
-					"value": "fairsuretravel.com.ng"
-				}
-			],
-			"destination": "https://www.fairsuretravel.com.ng/:1",
+			"source": "https://fairsuretravel.com.ng",
+			"destination": "https://fairsuretravel.com.ng",
 			"permanent": true
 		}
 	]
