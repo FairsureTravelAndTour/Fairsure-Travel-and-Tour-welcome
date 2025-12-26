@@ -67,7 +67,7 @@ const Booking: React.FC = () => {
 		childData.adults + childData.children + childData.infants;
 
 	const handlePassengerCount = (data: PassengerCount) => {
-		console.log("Updated Passenger Count:", data);
+		// console.log("Updated Passenger Count:", data);
 		setChildData(data);
 
 		// Update formData with new passenger counts
@@ -149,7 +149,7 @@ const Booking: React.FC = () => {
 
 	// Submit logic
 	const handleSubmit = async (e: React.FormEvent) => {
-		console.log(formData);
+		// console.log(formData);
 
 		e.preventDefault();
 

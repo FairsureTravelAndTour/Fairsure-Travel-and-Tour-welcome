@@ -24,7 +24,7 @@ const page = () => {
 			<div className="w-full bg-[url('/bg8.webp')] bg-cover bg-bottom lg:pt-[300px] pt-[200px] flex justify-center rounded-b-4xl px-2 py-1">
 				<div className="container flex items-end">
 					<p className="font-semibold lg:text-6xl lg: text-3xl text-white">
-						Board Of Directors
+						Other Team Members
 					</p>
 				</div>
 			</div>
