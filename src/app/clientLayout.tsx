@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { CgSpinner } from "react-icons/cg";
-import Navbar from "./sharedLayout/Navbar";
-import Footer from "./sharedLayout/footer";
 import NewsLetterSignUp from "./_components/NewsLetterSignUp/NewsLetterSignUp";
+import Footer from "./sharedLayout/footer";
+import Navbar from "./sharedLayout/navbar";
 
 export default function ClientLayout({
 	children,
@@ -25,7 +25,7 @@ export default function ClientLayout({
 	}, [pathname]);
 
 	return (
-		<div className="flex flex-col items-center">
+		<div>
 			<Navbar />
 			{loading && (
 				<div
@@ -37,7 +37,7 @@ export default function ClientLayout({
 						zIndex: 1000,
 					}}
 				>
-					<CgSpinner />
+					<CgSpinner className="animate-spin text-4xl" />
 				</div>
 			)}
 			{children}

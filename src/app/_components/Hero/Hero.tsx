@@ -1,4 +1,3 @@
-import React from "react";
 import ClientBookingWrapper from "../ClientBookingWrapper/ClientBookingWrapper";
 
 const Hero = () => {
