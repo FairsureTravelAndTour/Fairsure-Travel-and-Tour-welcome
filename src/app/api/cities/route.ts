@@ -7,6 +7,8 @@ interface City {
 	city: string;
 	country: string;
 	population: string;
+	lat: number;
+	lng: number;
 }
 
 export async function GET(req: Request) {
@@ -29,6 +31,8 @@ export async function GET(req: Request) {
 		.map((city) => ({
 			value: city.city,
 			label: `${city.city}, ${city.country}`,
+			lat: city.lat,
+			lng: city.lng,
 		}));
 
 	return NextResponse.json(results);

@@ -1,91 +1,88 @@
 "use client";
 
 import Image from "next/image";
-import { FaPhone } from "react-icons/fa";
+import { FaPhone, FaEnvelope } from "react-icons/fa";
 import Link from "next/link";
-import { FaMessage } from "react-icons/fa6";
 
 const Contact = () => {
 	return (
-		<>
-			<div className="w-screen bg-gray-900 flex justify-center mt-[70px] items relative mb-[700px] lg:mb-[350px]">
-				<div className="container flex px-20 items-center justify-between py-[100px]">
-					<div className="space-y-[10px]">
-						<h1 className="lg:text-6xl text-3xl font-medium text-white">
-							Get in touch<span className="text-7xl text-blue-400">.</span>
-						</h1>
-						<h2 className="text-white  max-w-[500px]">
-							Want to get in touch? Whether it&apos;s for guidanc on flight
-							bookings or to ask questions about our services. <br /> We&apos;d
-							love to hear from you. Here&apos;s how you can reach us.
-						</h2>
-					</div>
-					<div className="hidden lg:inline overflow-hidden rounded-md">
-						<Image
-							src={"/customerSupport.webp"}
-							height={200}
-							width={400}
-							alt="contact photo"
-							className="h-[300px]"
-						/>
-					</div>
+		<div className="bg-gray-50">
+			<header className="relative py-24 bg-gray-900 text-white text-center">
+				<div className="container mx-auto px-4">
+					<h1 className="text-5xl font-bold mb-4">Get in Touch</h1>
+					<p className="text-xl max-w-2xl mx-auto">
+						Want to get in touch? Whether it's for guidance on flight bookings or to ask questions about our services, we'd love to hear from you. Here's how you can reach us.
+					</p>
 				</div>
+			</header>
 
-				<div className="flex lg:flex-row flex-col absolute bottom-[-720px] lg:bottom-[-340px] gap-10 h-fit">
-					<div className="bg-gray-100 rounded-lg flex flex-col items-center  px-5 py-4 lg:w-[400px] w-[300px] min-h-full">
-						<FaPhone className="size-10 mb-5" />
-						<h2 className="text-lg font-medium">Talk to us.</h2>
-
-						<div className="flex flex-col justify-around h-full items-center">
-							<h3 className="text-center text-lg my-5">
-								want to ask questions or book a flight via a phone call? <br />
-								You can talk to us directly.
-							</h3>
-
+			<section className="py-20">
+				<div className="container mx-auto px-4">
+					<div className="grid md:grid-cols-2 gap-12">
+						<div className="bg-white p-8 rounded-lg shadow-md">
+							<div className="flex items-center mb-6">
+								<FaPhone className="text-3xl text-blue-600 mr-4" />
+								<h2 className="text-3xl font-bold">Talk to Us</h2>
+							</div>
+							<p className="text-gray-600 mb-6">
+								Want to ask questions or book a flight via a phone call? You can talk to us directly.
+							</p>
 							<Link
 								href={"tel:+2349053951769"}
-								className=" text-2xl my-5 underline underline-offset-5 hover:text-blue-400"
+								className="text-2xl text-blue-600 font-bold hover:underline"
 							>
 								09053951769
 							</Link>
 						</div>
-					</div>
-					<div className="bg-gray-100 rounded-lg flex flex-col items-center px-5 py-4 lg:w-[400px] w-[300px] h-full">
-						<FaMessage className="size-10 mb-5" />
-						<h2 className="text-lg font-medium text-center mb-5">
-							send us a Message or Complaint. We will reach out ASAP!
-						</h2>
 
-						<form action="" className="flex flex-col items-start w-full ">
-							<input
-								type="text"
-								placeholder="Full Name"
-								className="w-full  p-3 border-b focus:outline-none"
-							/>
-							<input
-								type="text"
-								placeholder="Email"
-								className="w-full  p-3 border-b focus:outline-none"
-							/>
-							<textarea
-								name="message"
-								placeholder="Your Message"
-								required
-								// value={formData.message}
-								// onChange={handleChange}
-								className="w-full  p-2 rounded border-b outline-0"
-								rows={2}
-							/>
-							<div className="w-full flex justify-center">
-								<button className="my-5 bg-blue-400 hover:bg-blue-900 hover:text-white px-3 py-2 rounded-md font-semibold">
-									Send
-								</button>
+						<div className="bg-white p-8 rounded-lg shadow-md">
+							<div className="flex items-center mb-6">
+								<FaEnvelope className="text-3xl text-blue-600 mr-4" />
+								<h2 className="text-3xl font-bold">Send us a Message</h2>
 							</div>
-						</form>
+							<form>
+								<div className="mb-4">
+									<label htmlFor="name" className="block text-gray-700 font-bold mb-2">Full Name</label>
+									<input
+										type="text"
+										id="name"
+										placeholder="Your Name"
+										className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+									/>
+								</div>
+								<div className="mb-4">
+									<label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email</label>
+									<input
+										type="email"
+										id="email"
+										placeholder="Your Email"
+										className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+									/>
+								</div>
+								<div className="mb-4">
+									<label htmlFor="message" className="block text-gray-700 font-bold mb-2">Message</label>
+									<textarea
+										id="message"
+										placeholder="Your Message"
+										rows={4}
+										className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+									></textarea>
+								</div>
+								<div className="text-right">
+									<button
+										type="submit"
+										className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300"
+									>
+										Send Message
+									</button>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
-			</div>
-		</>
+			</section>
+		</div>
 	);
 };
+
 export default Contact;

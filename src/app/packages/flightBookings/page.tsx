@@ -4,34 +4,36 @@ import React from "react";
 
 const page = () => {
 	return (
-		<div className="pt-[70px] flex flex-col items-center">
-			<div className="w-screen flex justify-center bg-[url('/bg10.webp')] bg-[position:40%_65%] bg-cover lg:h-[500px] h-[300px] rounded-b-4xl">
-				<div className="container flex items-end pb-5">
-					<h1 className="lg:text-7xl text-3xl">Flight Booking</h1>
+		<div className="bg-gray-50">
+			<header className="relative h-96 bg-cover bg-center" style={{ backgroundImage: "url('/bg10.webp')" }}>
+				<div className="absolute inset-0 bg-black opacity-50"></div>
+				<div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center">
+					<h1 className="text-6xl font-bold">Flight Booking</h1>
 				</div>
-			</div>
-			<div className="container lg:py-20 py-10 flex flex-col lg:gap-0 gap-6 items-center">
-				<div className="flex lg:flex-row flex-col gap-7 items-center">
-					<p className="lg:text-2xl lg:text-start text-center px-2">
-						Enjoy competitive fares for both domestic and international flights.
-						We offer a range of booking options tailored to individuals,
-						families, and corporate travelers. From budget airlines to premium
-						carriers, we provide flexibility in ticketing, seat reservations,
-						and upgrades to ensure a comfortable journey, every time you fly.
-					</p>
+			</header>
 
-					<Image
-						src={"/element3.webp"}
-						height={200}
-						width={120}
-						alt=""
-						className="w-[300px] rounded-2xl"
-					/>
+			<section className="py-20">
+				<div className="container mx-auto px-4">
+					<div className="grid md:grid-cols-2 gap-12 items-center">
+						<div>
+							<h2 className="text-4xl font-bold mb-6">Competitive Flight Options</h2>
+							<p className="text-gray-600 leading-relaxed mb-8">
+								Enjoy competitive fares for both domestic and international flights. We offer a range of booking options tailored to individuals, families, and corporate travelers. From budget airlines to premium carriers, we provide flexibility in ticketing, seat reservations, and upgrades to ensure a comfortable journey, every time you fly.
+							</p>
+							<BookButton Text="Book Now" Href="/" />
+						</div>
+						<div className="flex justify-center">
+							<Image
+								src={"/element3.webp"}
+								height={400}
+								width={300}
+								alt="flight booking photo"
+								className="rounded-lg shadow-lg"
+							/>
+						</div>
+					</div>
 				</div>
-				<div className="">
-					<BookButton Text="Book Now" Href="/" />
-				</div>
-			</div>
+			</section>
 		</div>
 	);
 };

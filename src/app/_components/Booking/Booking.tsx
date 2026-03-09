@@ -4,19 +4,23 @@ import React, { useState } from "react";
 import AsyncSelect from "react-select/async";
 import { FaPlane } from "react-icons/fa";
 import debounce from "lodash.debounce";
+import { useRouter } from "next/navigation";
 import { customStyles, customStyles2 } from "./asyncSelectStyles";
 import Select, { SingleValue, components } from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import PassengerMenu, { PassengerCount } from "./PassengerMenu";
 import toast from "react-hot-toast";
+import PassengerMenu, { PassengerCount } from "./PassengerMenu";
 
 interface CityOption {
 	value: string;
 	label: string;
+	lat: number;
+	lng: number;
 }
 
 const Booking: React.FC = () => {
+	const router = useRouter();
 	const [selectedFrom, setSelectedFrom] = useState<CityOption | null>(null);
 
 	const [selectedTo, setSelectedTo] = useState<CityOption | null>(null);
@@ -34,19 +38,23 @@ const Booking: React.FC = () => {
 	const [isPassengerMenuOpen, setIsPassengerMenuOpen] = useState(false);
 
 	const [formData, setFormData] = useState({
-		name: "", // Corresponds to the name input field
-		email: "", // Corresponds to the email input field
-		phoneNumber: "", // Corresponds to the phone number input field
-		adults: 1, // Corresponds to the number of adults input field
-		children: 0, // Corresponds to the number of children input field
-		infants: 0, // Corresponds to the number of infants input field
-		flightType: "one-way", // Corresponds to the flight type (e.g., one-way or round-trip)
-		flightClass: "economy", // Corresponds to the flight class (economy, business, etc.)
-		noOfPassengers: 1, // Corresponds to the total number of passengers
-		departureLocation: "", // Corresponds to the departure city
-		arrivalLocation: "", // Corresponds to the arrival city
-		departureDate: "", // Corresponds to the departure date input field
+		name: "",
+		email: "",
+		phoneNumber: "",
+		adults: 1,
+		children: 0,
+		infants: 0,
+		flightType: "one-way",
+		flightClass: "economy",
+		noOfPassengers: 1,
+		departureLocation: "",
+		arrivalLocation: "",
+		departureDate: "",
 		arrivalDate: null as string | null,
+		departureLat: 0,
+		departureLng: 0,
+		arrivalLat: 0,
+		arrivalLng: 0,
 	});
 
 	const [error, setError] = useState<string | null>(null);
@@ -67,10 +75,7 @@ const Booking: React.FC = () => {
 		childData.adults + childData.children + childData.infants;
 
 	const handlePassengerCount = (data: PassengerCount) => {
-		// console.log("Updated Passenger Count:", data);
 		setChildData(data);
-
-		// Update formData with new passenger counts
 		setFormData((prevData) => ({
 			...prevData,
 			adults: data.adults,
@@ -106,30 +111,26 @@ const Booking: React.FC = () => {
 		}));
 
 		if (fieldName === "flightType" && selectedOption.value === "one-way") {
-			setArrivalDate(null); // clear date picker UI
+			setArrivalDate(null);
 			setFormData((prev) => ({
 				...prev,
-				arrivalDate: null, // <-- use null here
+				arrivalDate: null,
 			}));
 		}
 	};
 
-	// Fetch cities from an API
 	const fetchCities = async (input: string): Promise<CityOption[]> => {
 		if (!input || input.length < 2) return [];
 
 		try {
 			const response = await fetch(`/api/cities?q=${input}`);
 			const data = await response.json();
-			console.log("Fetched cities:", data);
 			return data;
 		} catch (error) {
 			console.error("Error fetching cities from API:", error);
 			return [];
 		}
 	};
-
-	// Debounce the API call to avoid excessive requests
 
 	const debouncedFetch = debounce(
 		(input: string, callback: (options: CityOption[]) => void) => {
@@ -138,7 +139,6 @@ const Booking: React.FC = () => {
 		500
 	);
 
-	// use this directly in AsyncSelect
 	const loadOptions = (
 		inputValue: string,
 		callback: (options: CityOption[]) => void
@@ -147,31 +147,23 @@ const Booking: React.FC = () => {
 		debouncedFetch(inputValue, callback);
 	};
 
-	// Submit logic
 	const handleSubmit = async (e: React.FormEvent) => {
-		// console.log(formData);
-
 		e.preventDefault();
 
-		// Send the form data to the API
-		const response = await fetch("/api/book-flight", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				...formData,
-				arrivalDate: formData.arrivalDate ? formData.arrivalDate : null,
-			}), // This sends the formData to the backend
-		});
-
-		const result = await response.json();
-		if (!response.ok) {
-			toast.error(result.message);
+		if (
+			!formData.name ||
+			!formData.email ||
+			!formData.phoneNumber ||
+			!formData.departureLocation ||
+			!formData.arrivalLocation ||
+			!formData.departureDate
+		) {
+			toast.error("Please fill in all required fields");
 			return;
-		} else {
-			toast.success("Booking successful!");
 		}
+
+		localStorage.setItem("bookingData", JSON.stringify(formData));
+		router.push("/payment");
 	};
 
 	const formatDate = (date: Date): string => {
@@ -186,7 +178,6 @@ const Booking: React.FC = () => {
 				Search and book flights
 			</h2>
 			<div className=" bg-white p-3 lg:p-8 rounded-xl flex flex-col min-w-[300px] lg:min-w-[900px]">
-				{/* Flight options */}
 				<div className="flex flex-col lg:flex-row lg:gap-5 lg:mb-8 mb-3">
 					<Select
 						styles={customStyles2}
@@ -215,7 +206,7 @@ const Booking: React.FC = () => {
 						onMenuClose={() => setIsPassengerMenuOpen(false)}
 						menuIsOpen={isPassengerMenuOpen}
 						components={{
-							Menu: (props) => (
+							Menu: (props: any) => (
 								<components.Menu
 									{...props}
 									className="flex flex-col items-center"
@@ -233,7 +224,7 @@ const Booking: React.FC = () => {
 									)}
 								</components.Menu>
 							),
-							IndicatorSeparator: () => null, // optional: remove line between arrow and text
+							IndicatorSeparator: () => null,
 						}}
 					/>
 					<Select
@@ -250,9 +241,7 @@ const Booking: React.FC = () => {
 					/>
 				</div>
 
-				{/* Form */}
 				<form>
-					{/* First Row - 3 Inputs */}
 					<div className="lg:w-full flex flex-col lg:flex-row justify-between lg:gap-4 lg:mb-4 mb-2 ">
 						<input
 							type="text"
@@ -263,7 +252,7 @@ const Booking: React.FC = () => {
 							value={formData.name}
 						/>
 						<input
-							type="text"
+							type="email"
 							name="email"
 							placeholder="Email"
 							className="w-full border border-gray-400 p-3 rounded-md focus:outline-none focus:bg-blue-100"
@@ -280,18 +269,19 @@ const Booking: React.FC = () => {
 						/>
 					</div>
 
-					{/* Second Row - Cities Dropdown */}
 					<div className="flex lg:flex-row flex-col justify-between lg:items-center lg:gap-4 mb-4 ">
 						<AsyncSelect
 							styles={customStyles}
 							loadOptions={loadOptions}
 							placeholder="Where from"
 							value={selectedFrom}
-							onChange={(selected) => {
+							onChange={(selected: any) => {
 								setSelectedFrom(selected);
 								setFormData((prevData) => ({
 									...prevData,
-									departureLocation: selected ? selected.value : "", // Update formData
+									departureLocation: selected ? selected.value : "",
+									departureLat: selected ? selected.lat : 0,
+									departureLng: selected ? selected.lng : 0,
 								}));
 							}}
 							isSearchable
@@ -302,11 +292,13 @@ const Booking: React.FC = () => {
 							loadOptions={loadOptions}
 							placeholder="Going to"
 							value={selectedTo}
-							onChange={(selected) => {
+							onChange={(selected: any) => {
 								setSelectedTo(selected);
 								setFormData((prevData) => ({
 									...prevData,
-									arrivalLocation: selected ? selected.value : "", // Update formData
+									arrivalLocation: selected ? selected.value : "",
+									arrivalLat: selected ? selected.lat : 0,
+									arrivalLng: selected ? selected.lng : 0,
 								}));
 							}}
 							isSearchable
@@ -314,7 +306,7 @@ const Booking: React.FC = () => {
 						/>
 						<DatePicker
 							selected={departureDate}
-							onChange={(date) => {
+							onChange={(date: any) => {
 								setdepartureDate(date);
 								setFormData((prevData) => ({
 									...prevData,
@@ -328,11 +320,11 @@ const Booking: React.FC = () => {
 						{formData.flightType !== "one-way" && (
 							<DatePicker
 								selected={arrivalDate}
-								onChange={(date) => {
+								onChange={(date: any) => {
 									setArrivalDate(date);
 									setFormData((prevData) => ({
 										...prevData,
-										arrivalDate: date ? formatDate(date) : null, // <-- change "" to null
+										arrivalDate: date ? formatDate(date) : null,
 									}));
 								}}
 								placeholderText="Arrival date"
@@ -343,7 +335,6 @@ const Booking: React.FC = () => {
 					</div>
 				</form>
 
-				{/* Submit Button */}
 				<div className="flex lg:justify-end justify-center">
 					<button
 						onClick={handleSubmit}

@@ -58,7 +58,7 @@ const PassengerMenu = ({
 	};
 
 	return (
-		<div className="p-4 space-y-2 bg-blue-50 w-fit  rounded-md shadow-md">
+		<div className="w-fit p-4 space-y-2 text-gray-900 bg-blue-50 rounded-md shadow-md">
 			{(["adults", "children", "infants"] as const).map((type) => (
 				<div key={type} className="flex justify-between gap-5  items-center">
 					<div className="w-full flex flex-col">

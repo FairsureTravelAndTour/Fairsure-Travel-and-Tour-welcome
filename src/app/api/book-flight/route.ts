@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { supabase } from "../../../services/supabase";
 import nodemailer from "nodemailer";
+import { supabase } from "../../../services/supabase";
 
 interface Payload {
 	name: string;
@@ -16,6 +16,8 @@ interface Payload {
 	arrivalLocation: string;
 	departureDate: Date;
 	arrivalDate: Date | null;
+	paymentRef?: string;
+	amount?: number;
 }
 
 export async function POST(request: Request) {
@@ -33,6 +35,8 @@ export async function POST(request: Request) {
 		arrivalLocation,
 		departureDate,
 		arrivalDate,
+		paymentRef,
+		amount,
 	}: Payload = await request.json();
 
 	const { data, error } = await supabase.from("Bookings").insert([
@@ -50,6 +54,8 @@ export async function POST(request: Request) {
 			arrival_location: arrivalLocation,
 			departure_date: departureDate,
 			arrival_date: arrivalDate,
+			payment_ref: paymentRef,
+			amount,
 		},
 	]);
 
@@ -88,6 +94,8 @@ export async function POST(request: Request) {
 			<p><strong>From:</strong> ${departureLocation} → <strong>To:</strong> ${arrivalLocation}</p>
 			<p><strong>Departure Date:</strong> ${departureDate}</p>
 			<p><strong>Arrival Date:</strong> ${arrivalDate || "N/A"}</p>
+			<p><strong>Payment Ref:</strong> ${paymentRef || "N/A"}</p>
+			<p><strong>Amount:</strong> ₦${amount || "N/A"}</p>
 		`,
 	};
 

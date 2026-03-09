@@ -1,140 +1,113 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BiMenu, BiX } from "react-icons/bi";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const Navbar = () => {
 	const [isTeamOpen, setIsTeamOpen] = useState(false);
 	const [isPackagesOpen, setIsPackagesOpen] = useState(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 10);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
 	const navigations = [
 		{ name: "Home", href: "/" },
 		{ name: "About", href: "/aboutUs" },
 		{
 			name: "Team",
-			href1: "/boardOfDirectors",
-			href2: "/managementTeam",
-			href3: "/otherTeamMembers",
+            href: "#",
+			sublinks: [
+                { name: "Board Of Directors", href: "/boardOfDirectors" },
+                { name: "Management Team", href: "/managementTeam" },
+                { name: "Other Team Members", href: "/otherTeamMembers" },
+            ],
 		},
 		{
 			name: "Packages",
-			href1: "/packages/airportTransfers",
-			href2: "/packages/foreignExchange",
-			href3: "/packages/visaProcessing",
-			href4: "/packages/flightBookings",
-			href5: "/packages/corporateTravel",
+            href: "#",
+			sublinks: [
+                { name: "Airport Transfers", href: "/packages/airportTransfers" },
+                { name: "Foreign Exchange", href: "/packages/foreignExchange" },
+                { name: "Visa Processing", href: "/packages/visaProcessing" },
+                { name: "Flight Bookings", href: "/packages/flightBookings" },
+                { name: "Corporate Travel", href: "/packages/corporateTravel" },
+            ],
 		},
 		{ name: "Contact", href: "/contactUs" },
 	];
 
 	return (
 		<>
-			<nav className="hidden lg:flex container fixed items-center justify-between py-2 px-5 rounded-b-xl z-10 bg-white/30 backdrop-blur-md">
-				<Link href={"/"}>
-					<Image
-						height={100}
-						width={200}
-						alt="logo"
-						src={"/Travel&Tourlogo.png"}
-						className="w-[100px] h-[50px]"
-					/>
-				</Link>
+			<nav className={`hidden lg:flex fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+				<div className="container mx-auto flex items-center justify-between py-4 px-6">
+                    <Link href={"/"}>
+                        <Image
+                            height={100}
+                            width={200}
+                            alt="logo"
+                            src={"/Travel&Tourlogo.png"}
+                            className="w-24 h-auto"
+                        />
+                    </Link>
 
-				<ul className="flex gap-4 font-bold text-slate-800">
-					{navigations.map((navigation) => (
-						<li key={navigation.name}>
-							{navigation.name === "Team" ? (
-								<div
-									className="relative h-fit"
-									onMouseEnter={() => setIsTeamOpen(true)}
-									onMouseLeave={() => setIsTeamOpen(false)}
-								>
-									<Link href={"#"}>{navigation.name}</Link>
-									{isTeamOpen && (
-										<ul className="absolute top-[15px] bg-white shadow-md mt-2 py-5 w-48 px-2 rounded-lg flex flex-col gap-6">
-											<li>
-												<Link href={navigation.href1!}>Board Of Directors</Link>
-											</li>
-											<li>
-												<Link href={navigation.href2!}>Management Team</Link>
-											</li>
-											<li>
-												<Link href={navigation.href3!}>Other Team Members</Link>
-											</li>
-										</ul>
-									)}
-								</div>
-							) : navigation.name === "Packages" ? (
-								<div
-									className="relative h-fit"
-									onMouseEnter={() => setIsPackagesOpen(true)}
-									onMouseLeave={() => setIsPackagesOpen(false)}
-								>
-									<Link href={"#"}>{navigation.name}</Link>
-									{isPackagesOpen && (
-										<ul className="absolute top-[15px] bg-white shadow-md mt-2 py-5 w-48 px-2 rounded-lg flex flex-col gap-6">
-											<li>
-												<Link href={navigation.href1!}>Airport Transfers</Link>
-											</li>
-											<li>
-												<Link href={navigation.href2!}>Foreign Exchange</Link>
-											</li>
-											<li>
-												<Link href={navigation.href3!}>Visa Processing</Link>
-											</li>
-											<li>
-												<Link href={navigation.href4!}>Flight Bookings</Link>
-											</li>
-											<li>
-												<Link href={navigation.href5!}>Corporate Travel</Link>
-											</li>
-										</ul>
-									)}
-								</div>
-							) : (
-								<Link href={navigation.href!}>{navigation.name}</Link>
-							)}
-						</li>
-					))}
-				</ul>
+                    <ul className={`flex gap-8 font-semibold ${scrolled ? 'text-gray-800' : 'text-white'}`}>
+                        {navigations.map((navigation) => (
+                            <li key={navigation.name} className="relative group">
+                                <Link href={navigation.href} className="flex items-center gap-1">
+                                    {navigation.name}
+                                    {navigation.sublinks && <FaChevronDown size={12} />}
+                                </Link>
+                                {navigation.sublinks && (
+                                    <ul className="absolute top-full left-0 bg-white shadow-lg mt-2 py-2 w-56 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 invisible group-hover:visible">
+                                        {navigation.sublinks.map(sublink => (
+                                            <li key={sublink.name}>
+                                                <Link href={sublink.href} className="block px-4 py-2 text-gray-800 hover:bg-gray-100">
+                                                    {sublink.name}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
 			</nav>
 
-			<div className="flex justify-between lg:hidden fixed w-full bg-white items-center px-3 py-2 z-10">
-				<Link href={"/"}>
-					<Image
-						height={100}
-						width={200}
-						alt="logo"
-						src={"/Travel&Tourlogo.png"}
-						className="w-[100px] h-[50px]"
-					/>
-				</Link>
+			<div className={`lg:hidden fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || isMobileMenuOpen ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+				<div className="container mx-auto flex items-center justify-between py-4 px-6">
+                    <Link href={"/"}>
+                        <Image
+                            height={100}
+                            width={200}
+                            alt="logo"
+                            src={"/Travel&Tourlogo.png"}
+                            className="w-24 h-auto"
+                        />
+                    </Link>
 
-				{/* Mobile Menu Toggle Button */}
-				<div className="flex justify-end  pt-4 lg:hidden">
-					{!isMobileMenuOpen && (
-						<button onClick={() => setIsMobileMenuOpen((prev) => !prev)}>
-							<BiMenu className="w-8 h-8 text-gray-800" />
-						</button>
-					)}
-					{isMobileMenuOpen && (
-						<button onClick={() => setIsMobileMenuOpen((prev) => !prev)}>
-							<BiX className="w-8 h-8 text-gray-800" />
-						</button>
-					)}
-				</div>
+                    <button onClick={() => setIsMobileMenuOpen((prev) => !prev)}>
+                        {isMobileMenuOpen ? <BiX className={`w-8 h-8 ${scrolled || isMobileMenuOpen ? 'text-gray-800' : 'text-white'}`} /> : <BiMenu className={`w-8 h-8 ${scrolled ? 'text-gray-800' : 'text-white'}`} />}
+                    </button>
+                </div>
 
-				{/* Mobile Menu */}
 				{isMobileMenuOpen && (
-					<div className="lg:hidden absolute top-16 left-0 w-full bg-white shadow-md py-4 px-5 z-50">
-						<ul className="flex flex-col gap-4 font-semibold text-slate-800">
+					<div className="lg:hidden w-full bg-white py-4 px-5">
+						<ul className="flex flex-col gap-4 font-semibold text-gray-800">
 							{navigations.map((nav) => (
-								<React.Fragment key={nav.name}>
-									{nav.name === "Team" || nav.name === "Packages" ? (
-										<li>
+								<li key={nav.name}>
+									{nav.sublinks ? (
+										<div>
 											<button
 												className="w-full text-left flex justify-between items-center"
 												onClick={() =>
@@ -144,48 +117,36 @@ const Navbar = () => {
 												}
 											>
 												{nav.name}
-												<span>{openDropdown === nav.name ? "▲" : "▼"}</span>
+												<span>{openDropdown === nav.name ? <FaChevronUp/> : <FaChevronDown/>}</span>
 											</button>
 
-											{/* Dropdown Content */}
 											{openDropdown === nav.name && (
-												<ul className="mt-2 ml-4 flex flex-col gap-3 text-sm text-slate-700">
-													{Object.entries(nav)
-														.filter(([key]) => key.startsWith("href"))
-
-														.map(([key, value]) => (
-															<li key={key}>
-																<Link
-																	href={value}
-																	onClick={() => {
-																		setIsMobileMenuOpen(false);
-																		setOpenDropdown(null);
-																	}}
-																>
-																	{value
-																		.split("/")
-																		.slice(-1)[0]
-																		.replace(/([A-Z])/g, " $1")
-																		.replace(/^./, (c: string) =>
-																			c.toUpperCase()
-																		)}
-																</Link>
-															</li>
-														))}
+												<ul className="mt-2 ml-4 flex flex-col gap-3 text-sm text-gray-700">
+													{nav.sublinks.map((sublink) => (
+                                                        <li key={sublink.name}>
+                                                            <Link
+                                                                href={sublink.href}
+                                                                onClick={() => {
+                                                                    setIsMobileMenuOpen(false);
+                                                                    setOpenDropdown(null);
+                                                                }}
+                                                            >
+                                                                {sublink.name}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
 												</ul>
 											)}
-										</li>
+										</div>
 									) : (
-										<li>
-											<Link
-												href={nav.href!}
-												onClick={() => setIsMobileMenuOpen(false)}
-											>
-												{nav.name}
-											</Link>
-										</li>
+										<Link
+											href={nav.href!}
+											onClick={() => setIsMobileMenuOpen(false)}
+										>
+											{nav.name}
+										</Link>
 									)}
-								</React.Fragment>
+								</li>
 							))}
 						</ul>
 					</div>

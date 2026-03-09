@@ -20,42 +20,40 @@ const OtherMembers = [
 
 const page = () => {
 	return (
-		<div className="w-screen flex flex-col items-center">
-			<div className="w-full bg-[url('/bg8.webp')] bg-cover bg-bottom lg:pt-[300px] pt-[200px] flex justify-center rounded-b-4xl px-2 py-1">
-				<div className="container flex items-end">
-					<p className="font-semibold lg:text-6xl lg: text-3xl text-white">
-						Other Team Members
-					</p>
+		<div className="bg-gray-50">
+			<header className="relative h-96 bg-cover bg-center" style={{ backgroundImage: "url('/bg8.webp')" }}>
+				<div className="absolute inset-0 bg-black opacity-50"></div>
+				<div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center">
+					<h1 className="text-6xl font-bold">Other Team Members</h1>
 				</div>
-			</div>
-			<div className="container  pt-10 mb-20">
-				<div className="lg:grid gap-8 grid-cols-1 w-full flex flex-col items-center justify-center ">
-					{OtherMembers.map((member, index) => (
-						<div key={index} className="flex gap-3 items-center">
-							<div className="flex flex-col items-center ">
-								<div className="rounded-[100%] w-fit bg-gray-900 p-2">
-									<Image
-										src={member.image}
-										width={100}
-										height={100}
-										alt="Johnson's Photograph"
-										className="rounded-[100%] object-cover size-[250px] mx-auto"
-									/>
+			</header>
+
+			<section className="py-20">
+				<div className="container mx-auto px-4">
+					<div className="space-y-16">
+						{OtherMembers.map((member, index) => (
+							<div key={index} className="grid md:grid-cols-12 gap-12 items-center">
+								<div className={`md:col-span-4 ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
+									<div className="relative">
+										<Image
+											src={member.image}
+											width={400}
+											height={400}
+											alt={member.name}
+											className="rounded-lg shadow-lg"
+										/>
+									</div>
 								</div>
-								<div className="p-5 font-semibold text-xl lg:w-[500px] w-[300px] text-center">
-									<p className="">{member.name}</p>
-									<p className="">{member.position}</p>
+								<div className={`md:col-span-8 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
+									<h2 className="text-4xl font-bold mb-2">{member.name}</h2>
+									<p className="text-2xl text-gray-500 mb-6">{member.position}</p>
+									<p className="text-gray-600 leading-relaxed">{member.description}</p>
 								</div>
 							</div>
-							<div className="hidden  h-[400px] w-[700px] lg:flex items-center p-5 bg-gray-900 rounded-2xl">
-								<p className=" text-center text-white font-medium text-2xl">
-									{member.description}
-								</p>
-							</div>
-						</div>
-					))}
+						))}
+					</div>
 				</div>
-			</div>
+			</section>
 		</div>
 	);
 };
