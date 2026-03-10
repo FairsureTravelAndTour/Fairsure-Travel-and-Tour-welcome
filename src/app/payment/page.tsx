@@ -48,7 +48,8 @@ const PaymentPage: React.FC = () => {
 		const parsedData: BookingData = JSON.parse(data);
 		setBookingData(parsedData);
 
-		const randomAmount = 50 + Math.floor(Math.random() * 51);
+		const randomAmount = 50;
+		// const randomAmount = 50 + Math.floor(Math.random() * 51);
 		setAmount(randomAmount);
 
 		setLoading(false);
