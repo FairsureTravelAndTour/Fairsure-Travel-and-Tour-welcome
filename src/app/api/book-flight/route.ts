@@ -57,12 +57,20 @@ export async function POST(request: Request) {
 			payment_ref: paymentRef,
 			amount,
 		},
-	]);
+	]).select();
 
 	if (error) {
 		console.error("Error inserting booking:", error);
 		return NextResponse.json(
-			{ message: "Booking failed", error: error.message },
+			{ message: "Booking failed", error: error.message, details: error.details },
+			{ status: 500 }
+		);
+	}
+
+	if (!data || data.length === 0) {
+		console.error("No data returned after insert");
+		return NextResponse.json(
+			{ message: "Booking failed: No data returned after insert" },
 			{ status: 500 }
 		);
 	}

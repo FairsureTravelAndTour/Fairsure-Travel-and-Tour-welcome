@@ -59,32 +59,34 @@ const PaymentPage: React.FC = () => {
 		if (!bookingData) return;
 
 		try {
-			const res = await fetch('/api/book-flight', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					...bookingData,
-					arrivalDate: bookingData.arrivalDate ? bookingData.arrivalDate : null,
-					paymentRef: response.transactionRef,
-					amount: amount / 100,
-				}),
-			});
+			// const res = await fetch('/api/book-flight', {
+			// 	method: 'POST',
+			// 	headers: {
+			// 		'Content-Type': 'application/json',
+			// 	},
+			// 	body: JSON.stringify({
+			// 		...bookingData,
+			// 		arrivalDate: bookingData.arrivalDate ? bookingData.arrivalDate : null,
+			// 		paymentRef: response.transactionRef,
+			// 		amount: amount,
+			// 	}),
+			// });
 
-			const result = await res.json();
-			if (!res.ok) {
-				toast.error(result.message);
-				return;
-			}
+			// const result = await res.json();
+			// if (!res.ok) {
+			// 	toast.error(result.message);
+			// 	return;
+			// }
 
-			toast.success('Booking and payment successful!');
-			localStorage.removeItem('bookingData');
+			// toast.success('Booking and payment successful!');
+			// localStorage.removeItem('bookingData');
 			router.push('/');
 		} catch (err) {
 			console.error(err);
+			console.log("Error saving to supabase:", err);
 			toast.error('Failed to save booking');
 		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [bookingData, amount, router]);
 
 	const handlePaymentError = useCallback((response: any) => {
@@ -110,7 +112,7 @@ const PaymentPage: React.FC = () => {
 			customerId: bookingData?.email || '',
 			ref: 'TXN-' + Date.now(),
 			narration: 'Flight Booking Payment',
-			callback_url: window.location.href,
+			callback_url: "http://localhost:3000/payment/",
 			onSuccess: handlePaymentSuccess,
 			onError: handlePaymentError,
 			onClose: () => console.log('Payment modal closed'),
@@ -124,12 +126,13 @@ const PaymentPage: React.FC = () => {
 
 			const existing = document.querySelector(`script[src="${SCRIPT_URL}"]`);
 			if (existing) {
-				initializePayment();
+				// initializePayment();
+				return;
 			} else {
 				const script = document.createElement('script');
 				script.src = SCRIPT_URL;
 				script.async = true;
-				script.onload = initializePayment;
+				// script.onload = initializePayment;
 				script.onerror = () => console.error('Failed to load Fairsure Checkout script');
 				document.body.appendChild(script);
 			}
