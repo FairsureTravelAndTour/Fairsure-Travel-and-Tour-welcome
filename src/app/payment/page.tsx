@@ -110,12 +110,13 @@ const PaymentPage: React.FC = () => {
 			last_name: bookingData?.name.split(' ').slice(1).join(' ') || '',
 			phone_number: bookingData?.phoneNumber || '',
 			customerId: bookingData?.email || '',
+			paymentType: "Travel_bookings",
 			ref: 'TXN-' + Date.now(),
 			narration: 'Flight Booking Payment',
 			callback_url: "http://localhost:3000/payment/",
 			onSuccess: handlePaymentSuccess,
 			onError: handlePaymentError,
-			onClose: () => console.log('Payment modal closed'),
+			onClose: () => console.log('Payment modal closed!'),
 		});
 	}, [bookingData, amount, handlePaymentSuccess, handlePaymentError]);
 
